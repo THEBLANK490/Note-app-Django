@@ -1,0 +1,45 @@
+{% extends 'layouts/master.html' %}
+
+{% block title %}
+Notes
+{% endblock %}
+
+{% block content %}
+
+<div class="column is-10">
+    <a href="{% url 'details' %}" class="mb-3">Back</a>
+    <form method="post" action="{% url 'update' id %}">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ id }}">
+        <div class="field">
+          
+            <label class="label">{{ data.title }}</label>
+            <div class="control">
+                <input type="text" class="input" name="title" placeholder="Title" {% if data.title %} value="{{ data.title }}" {% endif %}>
+            </div>
+  
+        </div>
+
+        <div class="field">
+            <label class="label">Content</label>
+            <div class="control">
+                <textarea class="textarea" name="content" placeholder="{{ data.content }}"></textarea>
+            </div>
+        </div>
+
+        <div class="field is-grouped">
+            <div class="control">
+                <input type="submit" class="button is-primary" value="Update">
+                <!-- <a href="{% url 'update' data.id %}" class="button is-primary">Update</a> -->
+            </div>
+
+                <div class="control">
+                    <a href="{% url 'delete' data.id %}" class="button is-danger">Delete</a>
+                </div>
+
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
