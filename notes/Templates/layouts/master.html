@@ -3,21 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
+    />
     <title>{% block title %} {% endblock %}</title>
+
+    <!-- Custom css -->
+    {% block custom_css %} {% endblock %}
   </head>
   <body>
     <nav class="navbar is-dark">
       <div class="navbar-brand">
-          <a href="{% url 'details' %}" class="navbar-item">Notes</a>
+        <a href="{% url 'details' %}" class="navbar-item">Notes</a>
+      </div>
+      <div class="navbar-brand">
+        <a href="{% url 'dashboard' %}" class="navbar-item">Dashboard</a>
       </div>
 
       <div class="navbar-menu">
-          <div class="navbar-end">
-              <a href="{% url 'details' %}?id=0" class="navbar-item">New document</a>
-          </div>
+        <div class="navbar-end">
+          <a href="{% url 'logout' %}" class="navbar-item">Logout</a>
+        </div>
       </div>
-  </nav>
+    </nav>
 
     <!-- Body Content -->
     {% block content %} {% endblock %}

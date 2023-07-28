@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from details.models import Note
 from details.forms import NoteCreateForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
+@login_required(login_url='/login/')
 def update(request, id):
     notes_obj = Note.objects.get(id =id)
     title = request.POST.get('title','')
@@ -18,7 +19,7 @@ def update(request, id):
     context = {'data' : notes_obj,'id': id}
     return render(request, "details/update.html", context)
 
-
+@login_required(login_url='/login/')
 def details(request):
     id = int(request.GET.get('id',0))
     notes = Note.objects.all()
@@ -53,7 +54,7 @@ def details(request):
     }
     return render(request, 'details/details.html',context)
 
-
+@login_required(login_url='/login/')
 def delete(request,id):
     note_obj = Note.objects.get(id = id)
     context = {'data':note_obj}
